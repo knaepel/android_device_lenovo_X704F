@@ -36,6 +36,10 @@ TARGET_COPY_OUT_VENDOR := system/vendor
 # Properties
 TARGET_VENDOR_PROP += $(DEVICE_PATH)/vendor.prop
 
+# No A/B: one set of partitions and a separate recovery partition.
+# Android 16 assumes A/B unless this is set explicitly.
+AB_OTA_UPDATER := false
+
 # Recovery
 TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/rootdir/etc/fstab.qcom
 TARGET_RECOVERY_PIXEL_FORMAT := RGBX_8888
