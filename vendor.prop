@@ -1,0 +1,3 @@
+# Wi-Fi only tablet
+ro.radio.noril=yes
+ro.carrier=wifi-only
