@@ -26,5 +26,8 @@ PRODUCT_COPY_FILES += \
 PRODUCT_SOONG_NAMESPACES += \
     $(LOCAL_PATH)
 
+# Optional local bring-up settings (adb key), not part of the repo
+-include $(LOCAL_PATH)/bringup.mk
+
 # Inherit from the proprietary version
 $(call inherit-product-if-exists, vendor/lenovo/X704F/X704F-vendor.mk)
