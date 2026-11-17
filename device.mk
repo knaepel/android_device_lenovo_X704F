@@ -19,7 +19,7 @@ PRODUCT_AAPT_PREF_CONFIG := hdpi
 
 # Init
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/rootdir/etc/init.X704F.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.X704F.rc
+    $(LOCAL_PATH)/rootdir/etc/init.X704F.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.X704F.rc
 
 # fstab
 PRODUCT_COPY_FILES += \
