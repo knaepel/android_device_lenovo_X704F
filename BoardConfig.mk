@@ -18,7 +18,8 @@ TARGET_KERNEL_CONFIG := tbx704_defconfig
 TARGET_KERNEL_VERSION := 4.9
 BOARD_KERNEL_CMDLINE += \
     lpm_levels.sleep_disabled=1 \
-    androidboot.usbconfigfs=true
+    androidboot.usbconfigfs=true \
+    androidboot.usbcontroller=7000000.dwc3
 
 # Partitions (sizes from the device's GPT)
 BOARD_BOOTIMAGE_PARTITION_SIZE := 67108864

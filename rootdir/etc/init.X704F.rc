@@ -1,0 +1,7 @@
+# Lenovo TB-X704F
+
+# Lenovo's Android 7 bootloader does not pass androidboot.usbcontroller,
+# which newer Qualcomm bootloaders do. Without it USB (and adb) never
+# binds to the gadget.
+on early-init
+    setprop sys.usb.controller 7000000.dwc3

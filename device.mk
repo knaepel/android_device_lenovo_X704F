@@ -17,6 +17,10 @@ TARGET_SCREEN_WIDTH := 1200
 PRODUCT_AAPT_CONFIG := normal large xlarge
 PRODUCT_AAPT_PREF_CONFIG := hdpi
 
+# Init
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/rootdir/etc/init.X704F.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.X704F.rc
+
 # fstab
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/rootdir/etc/fstab.qcom:$(TARGET_COPY_OUT_RAMDISK)/fstab.qcom \
