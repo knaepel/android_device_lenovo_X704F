@@ -42,6 +42,12 @@ PRODUCT_PRODUCT_PROPERTIES += \
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/tablet_core_hardware.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/tablet_core_hardware.xml
 
+# HWUI: the 2019 Adreno GL driver copies glTexSubImage2D data later in its
+# own thread; the hardware bitmap uploader frees the source first and apps
+# crash in GrallocUploadThread. The Vulkan pipeline does not hit this.
+PRODUCT_SYSTEM_PROPERTIES += \
+    debug.hwui.renderer=skiavk
+
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += \
     $(LOCAL_PATH)
