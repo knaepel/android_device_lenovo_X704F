@@ -26,6 +26,10 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/rootdir/etc/fstab.qcom:$(TARGET_COPY_OUT_RAMDISK)/fstab.qcom \
     $(LOCAL_PATH)/rootdir/etc/fstab.qcom:$(TARGET_COPY_OUT_VENDOR)/etc/fstab.qcom
 
+# LiveDisplay: the display stack has no picture adjustment, system_server
+# crashed on IPictureAdjustment.setPictureAdjustment
+$(call soong_config_set_bool,livedisplay_sdm,enable_pa,false)
+
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += \
     $(LOCAL_PATH)

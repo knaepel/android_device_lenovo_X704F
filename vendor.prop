@@ -1,3 +1,7 @@
 # Wi-Fi only tablet
 ro.radio.noril=yes
 ro.carrier=wifi-only
+
+# Bluetooth: the WCN36xx controller does not know the Qualcomm LE vendor
+# commands (LE_ADV_FILTER), the stack aborted on every start
+bluetooth.core.le.vendor_capabilities.enabled=false
