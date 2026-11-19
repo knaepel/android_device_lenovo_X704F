@@ -55,3 +55,7 @@ VENDOR_SECURITY_PATCH := 2018-10-01
 
 # Optional local bring-up overrides, not part of the repo
 -include device/lenovo/X704F/bringup-board.mk
+
+# Camera: QCamera2 HAL in device/lenovo/X704F/camera for the Android 7
+# mm-camera blobs (vendor/lenovo/X704F)
+USE_DEVICE_SPECIFIC_CAMERA := true

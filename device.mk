@@ -75,5 +75,11 @@ PRODUCT_PACKAGES += \
     android.hardware.security.keymint-service.nonsecure \
     com.android.hardware.gatekeeper.nonsecure
 
+# Camera (QCamera2 HAL, shims for the Android 7 mm-camera blobs)
+PRODUCT_PACKAGES += \
+    camera.msm8953 \
+    libcamshim \
+    libppeiscore_shim
+
 # Inherit from the proprietary version
 $(call inherit-product-if-exists, vendor/lenovo/X704F/X704F-vendor.mk)

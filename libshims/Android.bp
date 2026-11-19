@@ -1,0 +1,24 @@
+//
+// SPDX-FileCopyrightText: 2024 The LineageOS Project
+// SPDX-License-Identifier: Apache-2.0
+//
+// Shims for the Android 7 camera blobs (taken from device/xiaomi/mido)
+
+// libmmcamera2_stats_modules: libandroid sensor/looper symbols
+cc_library_shared {
+    name: "libcamshim",
+    vendor: true,
+    srcs: ["libshims.cpp"],
+    cflags: ["-Werror", "-Wextra", "-Wall"],
+    shared_libs: ["libutils"],
+    compile_multilib: "32",
+}
+
+// libmmcamera_ppeiscore: old GraphicBuffer constructor
+cc_library_shared {
+    name: "libppeiscore_shim",
+    vendor: true,
+    srcs: ["GraphicBuffer.cpp"],
+    shared_libs: ["libui"],
+    compile_multilib: "32",
+}
