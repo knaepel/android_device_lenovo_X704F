@@ -42,6 +42,12 @@ PRODUCT_PRODUCT_PROPERTIES += \
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/tablet_core_hardware.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/tablet_core_hardware.xml
 
+# Audio: Lenovo platform info and mixer paths (identical to the stock
+# /system/etc/mixer_paths_mtp.xml); ACDB files come from vendor/lenovo
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/audio/audio_platform_info.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_platform_info.xml \
+    $(LOCAL_PATH)/audio/mixer_paths_mtp.xml:$(TARGET_COPY_OUT_VENDOR)/etc/mixer_paths_mtp.xml
+
 # Touchscreen orientation (landscape)
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/idc/goodix-ts.idc:$(TARGET_COPY_OUT_VENDOR)/usr/idc/goodix-ts.idc
