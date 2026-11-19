@@ -14,3 +14,7 @@ vendor.gralloc.disable_ahardware_buffer=1
 # Graphics: no UBWC, the old Adreno driver and the CAF gralloc disagree on
 # the UBWC buffer size and the GPU wrote past the end of render targets
 vendor.gralloc.disable_ubwc=1
+
+# Display: the panel scans in portrait, the tablet is a landscape device
+# (Lenovo stock: ro.sf.hwrotation=90). Touch follows in idc/goodix-ts.idc.
+ro.surface_flinger.primary_display_orientation=ORIENTATION_90
