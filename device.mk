@@ -33,5 +33,11 @@ PRODUCT_SOONG_NAMESPACES += \
 # Optional local bring-up settings (adb key), not part of the repo
 -include $(LOCAL_PATH)/bringup.mk
 
+# Keystore: software KeyMint and Gatekeeper for bring-up.
+# TODO: replace with the TrustZone keymaster (Lenovo keystore.msm8953.so).
+PRODUCT_PACKAGES += \
+    android.hardware.security.keymint-service.nonsecure \
+    com.android.hardware.gatekeeper.nonsecure
+
 # Inherit from the proprietary version
 $(call inherit-product-if-exists, vendor/lenovo/X704F/X704F-vendor.mk)
