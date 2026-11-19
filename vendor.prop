@@ -14,4 +14,3 @@ vendor.gralloc.disable_ahardware_buffer=1
 # Graphics: no UBWC, the old Adreno driver and the CAF gralloc disagree on
 # the UBWC buffer size and the GPU wrote past the end of render targets
 vendor.gralloc.disable_ubwc=1
-vendor.gralloc.enable_fb_ubwc=0
