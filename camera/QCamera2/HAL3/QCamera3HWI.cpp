@@ -53,6 +53,7 @@
 #include "util/QCameraFlash.h"
 #include "QCamera3HWI.h"
 #include "QCamera3VendorTags.h"
+#include "QCameraFormat.h"
 #include "QCameraTrace.h"
 
 extern "C" {
@@ -2282,6 +2283,10 @@ int QCamera3HardwareInterface::configureStreamsPerfLocked(
         }
         mStreamConfigInfo.stream_sizes[mStreamConfigInfo.num_streams] =
                 analysisInfo.analysis_max_res;
+        /* TB-X704 daemon needs the format to size native buffers */
+        mStreamConfigInfo.format[mStreamConfigInfo.num_streams] =
+                (analysisInfo.analysis_format == CAM_FORMAT_Y_ONLY) ?
+                CAM_FORMAT_Y_ONLY : CAM_FORMAT_YUV_420_NV21;
         mStreamConfigInfo.num_streams++;
     }
 
@@ -3702,8 +3707,38 @@ int QCamera3HardwareInterface::processCaptureRequest(
         /*set the capture intent, hal version, tintless, stream info,
          *and disenable parameters to the backend*/
         LOGD("set_parms META_STREAM_INFO " );
+        /*
+         * The TB-X704 (msm-3.18) mm-camera daemon allocates native buffers
+         * for HAL-internal streams from cam_stream_size_info_t.format and
+         * fails with format 0, so the preview never gets frames. This HAL
+         * never filled the field; use the default format of each stream type.
+         */
         for (uint32_t i = 0; i < mStreamConfigInfo.num_streams; i++) {
-            LOGI("STREAM INFO : type %d, wxh: %d x %d, pp_mask: 0x%x "
+            if (mStreamConfigInfo.format[i] != 0)
+                continue;
+            switch (mStreamConfigInfo.type[i]) {
+            case CAM_STREAM_TYPE_PREVIEW:
+                mStreamConfigInfo.format[i] = PREVIEW_STREAM_FORMAT;
+                break;
+            case CAM_STREAM_TYPE_VIDEO:
+                mStreamConfigInfo.format[i] = CAM_FORMAT_YUV_420_NV12_VENUS;
+                break;
+            case CAM_STREAM_TYPE_CALLBACK:
+                mStreamConfigInfo.format[i] = CALLBACK_STREAM_FORMAT;
+                break;
+            case CAM_STREAM_TYPE_SNAPSHOT:
+            case CAM_STREAM_TYPE_ANALYSIS:
+                mStreamConfigInfo.format[i] = CAM_FORMAT_YUV_420_NV21;
+                break;
+            default:
+                break;
+            }
+        }
+        /* the batch entry above holds a copy; refresh it with the formats */
+        ADD_SET_PARAM_ENTRY_TO_BATCH(mParameters,
+                CAM_INTF_META_STREAM_INFO, mStreamConfigInfo);
+        for (uint32_t i = 0; i < mStreamConfigInfo.num_streams; i++) {
+            LOGI("STREAM INFO : type %d, wxh: %d x %d, pp_mask: 0x%llx "
                     "Format:%d is_type: %d",
                     mStreamConfigInfo.type[i],
                     mStreamConfigInfo.stream_sizes[i].width,
