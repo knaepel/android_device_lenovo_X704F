@@ -8,7 +8,8 @@
 /dev/block/by-name/userdata               /data                  ext4    nosuid,nodev,noatime,noauto_da_alloc                                                     wait,check,quota,formattable,reservedsize=128M
 /dev/block/by-name/cache                  /cache                 ext4    nosuid,nodev,noatime                                                                     wait,check,formattable
 /dev/block/by-name/persist                /mnt/vendor/persist    ext4    nosuid,nodev,barrier=1,no_sehash_xattr                                                   wait
-/dev/block/by-name/dsp                    /vendor/dsp            ext4    ro,nosuid,nodev,barrier=1,context=u:object_r:adsprpcd_file:s0                            wait
+# TODO: mounting dsp starts the DSP stack and the device cold-resets early
+#/dev/block/by-name/dsp                    /vendor/dsp            ext4    ro,nosuid,nodev,barrier=1,context=u:object_r:adsprpcd_file:s0                            wait
 /dev/block/by-name/modem                  /vendor/firmware_mnt   vfat    ro,shortname=lower,uid=0,gid=1000,dmask=227,fmask=337,context=u:object_r:firmware_file:s0 wait
 /dev/block/by-name/misc                   /misc                  emmc    defaults                                                                                 defaults
 /dev/block/by-name/config                 /frp                   emmc    defaults                                                                                 defaults
