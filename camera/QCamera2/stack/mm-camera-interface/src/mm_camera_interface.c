@@ -48,6 +48,15 @@
 // Camera dependencies
 #include "mm_camera_dbg.h"
 #include "mm_camera_interface.h"
+
+/*
+ * The kernel reports the msm_config entities with the Android 7 group ids
+ * (media-device legacy mapping), which Lenovo's mm-qcamera-daemon needs.
+ * The 4.9 MSM_CAMERA_SUBDEV_* values differ, so compare against the old ones.
+ */
+#define LEGACY_GROUP_ID_VNODE       2
+#define LEGACY_GROUP_ID_SENSOR      6
+#define LEGACY_GROUP_ID_SENSOR_INIT 14
 #include "mm_camera.h"
 
 int32_t (*mm_camera_shim_module_init)(mm_camera_shim_ops_t *shim_ops);
@@ -1584,7 +1593,7 @@ void get_sensor_info()
                 break;
             }
             if(entity.type == MEDIA_ENT_T_V4L2_SUBDEV &&
-                entity.group_id == MSM_CAMERA_SUBDEV_SENSOR) {
+                entity.group_id == LEGACY_GROUP_ID_SENSOR) {
                 temp = entity.flags >> 8;
                 mount_angle = (temp & 0xFF) * 90;
                 facing = ((entity.flags & CAM_SENSOR_FACING_MASK) ?
@@ -1814,7 +1823,7 @@ uint8_t get_num_of_cameras()
             LOGD("entity name %s type %d group id %d",
                 entity.name, entity.type, entity.group_id);
             if (entity.type == MEDIA_ENT_T_V4L2_SUBDEV &&
-                entity.group_id == MSM_CAMERA_SUBDEV_SENSOR_INIT) {
+                entity.group_id == LEGACY_GROUP_ID_SENSOR_INIT) {
                 snprintf(subdev_name, sizeof(dev_name), "/dev/%s", entity.name);
                 break;
             }
@@ -1885,7 +1894,7 @@ uint8_t get_num_of_cameras()
                 rc = 0;
                 break;
             }
-            if(entity.type == MEDIA_ENT_T_DEVNODE_V4L && entity.group_id == QCAMERA_VNODE_GROUP_ID) {
+            if(entity.type == MEDIA_ENT_T_DEVNODE_V4L && entity.group_id == LEGACY_GROUP_ID_VNODE) {
                 strlcpy(g_cam_ctrl.video_dev_name[num_cameras],
                      entity.name, sizeof(entity.name));
                 LOGE("dev_info[id=%d,name='%s']\n",
