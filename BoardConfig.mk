@@ -50,3 +50,6 @@ VENDOR_SECURITY_PATCH := 2018-10-01
 
 # Inherit from the proprietary version
 -include vendor/lenovo/X704F/BoardConfigVendor.mk
+
+# Optional local bring-up overrides, not part of the repo
+-include device/lenovo/X704F/bringup-board.mk

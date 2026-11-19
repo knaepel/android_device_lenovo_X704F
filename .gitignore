@@ -1,3 +1,5 @@
 bringup.mk
 bringup-adbkey.pub
 bringup-product.mk
+bringup-board.mk
+sepolicy-bringup/
