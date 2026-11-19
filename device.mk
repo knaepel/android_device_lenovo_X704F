@@ -37,6 +37,11 @@ PRODUCT_PRODUCT_PROPERTIES += \
     ro.surface_flinger.supports_background_blur=0 \
     persist.sys.sf.disable_blurs=1
 
+# Tablet features (app widgets, home screen, ...). Launcher3 crashes without
+# android.software.app_widgets.
+PRODUCT_COPY_FILES += \
+    frameworks/native/data/etc/tablet_core_hardware.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/tablet_core_hardware.xml
+
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += \
     $(LOCAL_PATH)
