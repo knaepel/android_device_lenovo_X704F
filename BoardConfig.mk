@@ -17,7 +17,7 @@ TARGET_SCREEN_DENSITY := 240
 TARGET_KERNEL_CONFIG := tbx704_defconfig
 TARGET_KERNEL_VERSION := 4.9
 BOARD_KERNEL_CMDLINE += \
-    lpm_levels.sleep_disabled=1 \
+    lpm_levels.sleep_disabled=1 printk.devkmsg=on \
     androidboot.usbconfigfs=true \
     androidboot.usbcontroller=7000000.dwc3
 
