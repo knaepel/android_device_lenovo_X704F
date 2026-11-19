@@ -45,8 +45,12 @@ PRODUCT_COPY_FILES += \
 # HWUI: the 2019 Adreno GL driver copies glTexSubImage2D data later in its
 # own thread; the hardware bitmap uploader frees the source first and apps
 # crash in GrallocUploadThread. The Vulkan pipeline does not hit this.
+# SurfaceFlinger's GLES RenderEngine samples client buffers through broken
+# GPU mappings (read page faults, white frames after the first screen off);
+# its Vulkan RenderEngine composes correctly.
 PRODUCT_SYSTEM_PROPERTIES += \
-    debug.hwui.renderer=skiavk
+    debug.hwui.renderer=skiavk \
+    debug.renderengine.backend=skiavkthreaded
 
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += \
