@@ -30,6 +30,13 @@ PRODUCT_COPY_FILES += \
 # crashed on IPictureAdjustment.setPictureAdjustment
 $(call soong_config_set_bool,livedisplay_sdm,enable_pa,false)
 
+# Blur is too heavy for the Adreno 506 (as on onclite)
+PRODUCT_PRODUCT_PROPERTIES += \
+    ro.launcher.blur.appLaunch=0 \
+    ro.sf.blurs_are_expensive=0 \
+    ro.surface_flinger.supports_background_blur=0 \
+    persist.sys.sf.disable_blurs=1
+
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += \
     $(LOCAL_PATH)

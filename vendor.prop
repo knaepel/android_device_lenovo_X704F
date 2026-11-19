@@ -5,3 +5,8 @@ ro.carrier=wifi-only
 # Bluetooth: the WCN36xx controller does not know the Qualcomm LE vendor
 # commands (LE_ADV_FILTER), the stack aborted on every start
 bluetooth.core.le.vendor_capabilities.enabled=false
+
+# Graphics: these Adreno blobs (2019) belong to the older display HAL; the
+# CAF gralloc would size GPU buffers through adreno_init_memory_layout.
+# Use the classic size calculation like onclite.
+vendor.gralloc.disable_ahardware_buffer=1
