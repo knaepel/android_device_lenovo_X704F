@@ -16,6 +16,8 @@ TARGET_SCREEN_DENSITY := 240
 # Kernel (Lenovo's LK expects an appended DTB, see kernel/lenovo/msm8953)
 TARGET_KERNEL_CONFIG := tbx704_defconfig
 TARGET_KERNEL_VERSION := 4.9
+# 4.9 with LLD sometimes ends in "Inconsistent kallsyms data"
+TARGET_KERNEL_ADDITIONAL_FLAGS := KALLSYMS_EXTRA_PASS=1
 BOARD_KERNEL_CMDLINE += \
     lpm_levels.sleep_disabled=1 printk.devkmsg=on \
     androidboot.usbconfigfs=true \
