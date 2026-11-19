@@ -57,7 +57,8 @@ blob_fixups: blob_fixups_user_type = {
         .add_needed('libcamshim.so')
         .remove_needed('libandroid.so'),
     'vendor/lib/libmmcamera_ppeiscore.so': blob_fixup()
-        .add_needed('libppeiscore_shim.so'),
+        .add_needed('libppeiscore_shim.so')
+        .add_needed('libGLESv3.so'),
     # Camera - Android 7 libstdc++
     ('vendor/lib/libchromaflash.so', 'vendor/lib/libmmcamera_hdr_gb_lib.so',
      'vendor/lib/liboptizoom.so', 'vendor/lib/libseemore.so', 'vendor/lib/libtrueportrait.so',
@@ -66,6 +67,23 @@ blob_fixups: blob_fixups_user_type = {
         .replace_needed('libstdc++.so', 'libstdc++_vendor.so'),
     'vendor/lib/libts_face_beautify_hal.so': blob_fixup()
         .replace_needed('libstdc++.so', 'libstdc++_vendor.so'),
+    # Camera - Android 7 blobs call liblog without listing it
+    ('vendor/lib/libjpegdhw.so',
+     'vendor/lib/libjpegdmahw.so',
+     'vendor/lib/libjpegehw.so',
+     'vendor/lib/libllvd_smore.so',
+     'vendor/lib/libmmcamera2_sensor_modules.so',
+     'vendor/lib/libmmcamera_cac3_lib.so',
+     'vendor/lib/libmmcamera_dbg.so',
+     'vendor/lib/libmmcamera_gc2375.so',
+     'vendor/lib/libmmcamera_hdr_gb_lib.so',
+     'vendor/lib/libmmcamera_pdaf.so',
+     'vendor/lib/libmmcamera_pdafcamif.so',
+     'vendor/lib/libmmcamera_tintless_bg_pca_algo.so',
+     'vendor/lib/libqomx_jpegdec.so',
+     'vendor/lib/libqomx_jpegenc.so',
+     'vendor/lib/libqomx_jpegenc_pipe.so'): blob_fixup()
+        .add_needed('liblog.so'),
     'vendor/lib/libstdc++_vendor.so': blob_fixup()
         .fix_soname(),
 }  # fmt: skip
