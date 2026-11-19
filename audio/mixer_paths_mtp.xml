@@ -976,6 +976,8 @@
     <path name="adc1">
         <ctl name="ADC1 Volume" value="6" />
         <ctl name="DEC1 MUX" value="ADC1" />
+        <!-- 4.9 analog codec: ADC1 is connected to AMIC1 through this switch -->
+        <ctl name="ADC1_INP1 Switch" value="1" />
     </path>
 
     <path name="adc2">
@@ -1050,6 +1052,8 @@
     <path name="handset-mic">
         <path name="adc1" />
         <ctl name="IIR1 INP1 MUX" value="DEC1" />
+        <!-- +12 dB: the built-in mic recorded very quietly (peaks around -26 dBFS) -->
+        <ctl name="DEC1 Volume" value="96" />
     </path>
 
     <path name="headphones">
