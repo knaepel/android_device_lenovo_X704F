@@ -21,9 +21,8 @@ from extract_utils.main import (
 
 namespace_imports = [
     'device/lenovo/X704F',
-    'hardware/qcom-caf/msm8953',
+    'device/lenovo/msm8953-common/platform/qcom',
     'vendor/lenovo/msm8953-common',
-    'vendor/qcom/opensource/display',
 ]
 
 lib_fixups: lib_fixups_user_type = {

@@ -21,6 +21,10 @@ PRODUCT_AAPT_PREF_CONFIG := hdpi
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/rootdir/etc/init.X704F.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.X704F.rc
 
+# Camera: Lenovo sensor config with MountAngle 0 (landscape natural orientation)
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/camera/camera_config.xml:$(TARGET_COPY_OUT_VENDOR)/etc/camera/camera_config.xml
+
 # fstab
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/rootdir/etc/fstab.qcom:$(TARGET_COPY_OUT_RAMDISK)/fstab.qcom \
