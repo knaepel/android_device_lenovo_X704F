@@ -19,7 +19,6 @@ TARGET_KERNEL_VERSION := 4.9
 # 4.9 with LLD sometimes ends in "Inconsistent kallsyms data"
 TARGET_KERNEL_ADDITIONAL_FLAGS := KALLSYMS_EXTRA_PASS=1
 BOARD_KERNEL_CMDLINE += \
-    lpm_levels.sleep_disabled=1 \
     androidboot.usbconfigfs=true \
     androidboot.usbcontroller=7000000.dwc3
 
