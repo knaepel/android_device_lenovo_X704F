@@ -19,7 +19,7 @@ TARGET_KERNEL_VERSION := 4.9
 # 4.9 with LLD sometimes ends in "Inconsistent kallsyms data"
 TARGET_KERNEL_ADDITIONAL_FLAGS := KALLSYMS_EXTRA_PASS=1
 BOARD_KERNEL_CMDLINE += \
-    lpm_levels.sleep_disabled=1 printk.devkmsg=on \
+    lpm_levels.sleep_disabled=1 \
     androidboot.usbconfigfs=true \
     androidboot.usbcontroller=7000000.dwc3
 
@@ -53,8 +53,6 @@ VENDOR_SECURITY_PATCH := 2018-10-01
 # Inherit from the proprietary version
 -include vendor/lenovo/X704F/BoardConfigVendor.mk
 
-# Optional local bring-up overrides, not part of the repo
--include device/lenovo/X704F/bringup-board.mk
 
 # Camera: QCamera2 HAL in device/lenovo/X704F/camera for the Android 7
 # mm-camera blobs (vendor/lenovo/X704F)

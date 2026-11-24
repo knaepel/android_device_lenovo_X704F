@@ -75,9 +75,6 @@ PRODUCT_SYSTEM_PROPERTIES += \
 PRODUCT_SOONG_NAMESPACES += \
     $(LOCAL_PATH)
 
-# Optional local bring-up settings (adb key), not part of the repo
--include $(LOCAL_PATH)/bringup.mk
-
 # Keystore: TrustZone keymaster and gatekeeper. Lenovo's legacy modules
 # keystore.msm8953 (keymaster1) and gatekeeper.msm8953 talk to the QSEE
 # trustlet; the AOSP HIDL passthrough services wrap them for keystore2.

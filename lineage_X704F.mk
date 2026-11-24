@@ -25,5 +25,3 @@ PRODUCT_BUILD_PROP_OVERRIDES += \
     BuildFingerprint=Lenovo/LenovoTB-X704F/X704F:7.1.1/NMF26F/TB-X704F_S000056_181015_ROW:user/release-keys \
     DeviceProduct=LenovoTB-X704F
 
-# Optional local bring-up overrides (adb root), not part of the repo
--include device/lenovo/X704F/bringup-product.mk
