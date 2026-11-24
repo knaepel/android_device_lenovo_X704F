@@ -46,6 +46,10 @@ PRODUCT_PRODUCT_PROPERTIES += \
     ro.surface_flinger.supports_background_blur=0 \
     persist.sys.sf.disable_blurs=1
 
+# OTA updates (LineageOS Updater): update list and packages on GitHub
+PRODUCT_PRODUCT_PROPERTIES += \
+    lineage.updater.uri=https://raw.githubusercontent.com/knaepel/android_ota_lenovo_X704F/main/{device}.json
+
 # Tablet features (app widgets, home screen, ...). Launcher3 crashes without
 # android.software.app_widgets.
 PRODUCT_COPY_FILES += \

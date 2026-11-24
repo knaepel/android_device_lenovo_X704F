@@ -12,6 +12,11 @@ $(call inherit-product, vendor/lineage/config/common_full_tablet_wifionly.mk)
 # Inherit from X704F device
 $(call inherit-product, device/lenovo/X704F/device.mk)
 
+# Google apps (MindTheGapps), only if vendor/gapps is checked out
+ifneq ($(wildcard vendor/gapps/arm64/arm64-vendor.mk),)
+$(call inherit-product, vendor/gapps/arm64/arm64-vendor.mk)
+endif
+
 PRODUCT_DEVICE := X704F
 PRODUCT_NAME := lineage_X704F
 PRODUCT_BRAND := Lenovo
