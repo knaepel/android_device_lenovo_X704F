@@ -78,11 +78,14 @@ PRODUCT_SOONG_NAMESPACES += \
 # Optional local bring-up settings (adb key), not part of the repo
 -include $(LOCAL_PATH)/bringup.mk
 
-# Keystore: software KeyMint and Gatekeeper for bring-up.
-# TODO: replace with the TrustZone keymaster (Lenovo keystore.msm8953.so).
+# Keystore: TrustZone keymaster and gatekeeper. Lenovo's legacy modules
+# keystore.msm8953 (keymaster1) and gatekeeper.msm8953 talk to the QSEE
+# trustlet; the AOSP HIDL passthrough services wrap them for keystore2.
 PRODUCT_PACKAGES += \
-    android.hardware.security.keymint-service.nonsecure \
-    com.android.hardware.gatekeeper.nonsecure
+    android.hardware.keymaster@3.0-impl \
+    android.hardware.keymaster@3.0-service \
+    android.hardware.gatekeeper@1.0-impl \
+    android.hardware.gatekeeper@1.0-service
 
 # Camera (QCamera2 HAL, shims for the Android 7 mm-camera blobs)
 PRODUCT_PACKAGES += \

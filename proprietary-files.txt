@@ -273,3 +273,9 @@ vendor/lib/libmmcamera_imx219_ofilm.so
 vendor/lib/libmmcamera_ov5695_avc.so
 vendor/lib/libmmcamera_ov5695_qtech2.so
 vendor/lib/libmmcamera_ov8856.so
+
+# Keymaster and gatekeeper (QSEE)
+vendor/lib/hw/gatekeeper.msm8953.so
+vendor/lib/hw/keystore.msm8953.so
+vendor/lib64/hw/gatekeeper.msm8953.so
+vendor/lib64/hw/keystore.msm8953.so

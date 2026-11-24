@@ -59,3 +59,7 @@ VENDOR_SECURITY_PATCH := 2018-10-01
 # Camera: QCamera2 HAL in device/lenovo/X704F/camera for the Android 7
 # mm-camera blobs (vendor/lenovo/X704F)
 USE_DEVICE_SPECIFIC_CAMERA := true
+
+# VINTF: TrustZone keymaster 3.0 and gatekeeper 1.0 (HIDL)
+DEVICE_MANIFEST_FILE += $(DEVICE_PATH)/manifest.xml
+DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += $(DEVICE_PATH)/framework_compatibility_matrix.xml

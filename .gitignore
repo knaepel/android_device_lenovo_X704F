@@ -3,3 +3,5 @@ bringup-adbkey.pub
 bringup-product.mk
 bringup-board.mk
 sepolicy-bringup/
+bringup-watchdog.sh
+bringup-watchdog.rc

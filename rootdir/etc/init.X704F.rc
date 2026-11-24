@@ -5,3 +5,13 @@
 # binds to the gadget.
 on early-init
     setprop sys.usb.controller 7000000.dwc3
+
+# Lenovo's keystore/gatekeeper.msm8953 modules wait for sys.keymaster.loaded,
+# which Lenovo's own qseecomd set after loading the keymaster trustlet. Our
+# qseecomd does not; TrustZone loads the trustlet itself (ro.boot.keymaster=1).
+# Set it in post-fs: the HALs start in late-fs, after qseecomd is up (see
+# init.target.rc). A property trigger would be too late - init blocks in
+# post-fs-data on "vdc keymaster earlyBootEnded" -> keystore2 -> keymaster
+# HAL, which waits for this property (boot hangs at the logo).
+on post-fs
+    setprop sys.keymaster.loaded true
